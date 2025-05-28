@@ -56,6 +56,8 @@ logger = PhysicsLogger()
 running = True
 falltime = 0
 while running:
+    logger.log_data(time.time(), float(ball_bottom_x/PIXELS_PER_METER),float( -1*((ball_bottom_y-GROUND_Y)/PIXELS_PER_METER)), vx, vy)
+    
     # Handle events
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -86,7 +88,6 @@ while running:
     
     # Draw everything
     draw(ball_bottom_x, ball_bottom_y)
-    logger.log_data(time.time(), ball_bottom_x//PIXELS_PER_METER, -1*(ball_bottom_y//PIXELS_PER_METER), vx, vy)
     
     # Flip display
     pygame.display.flip()

@@ -6,6 +6,6 @@ based on what I learned in a physics class, I thought I should make a visualizer
 
 ## usage
 install requirements `(python, path etc)` \
-change Angle and velocity at which the ball is thrown in `config.py` \
+change initial ball height, Angle and velocity at which the ball is thrown in `config.py` \
 run `renderer.py` to see animation and log the values \
 run `graph.py` to see and export graphs.

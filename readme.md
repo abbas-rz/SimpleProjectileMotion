@@ -3,3 +3,9 @@
 ![image](https://github.com/user-attachments/assets/07fab5c9-b9c5-4719-9fef-2281ce8a88eb)
 
 based on what I learned in a physics class, I thought I should make a visualizer for it for fun.
+
+## usage
+install requirements `(python, path etc)` \
+change Angle and velocity at which the ball is thrown in `config.py` \
+run `renderer.py` to see animation and log the values \
+run `graph.py` to see and export graphs.

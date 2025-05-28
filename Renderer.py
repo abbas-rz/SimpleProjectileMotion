@@ -2,6 +2,7 @@ import pygame
 import config
 import sys
 import time
+from logger import PhysicsLogger
 
 # Pygame setup
 pygame.init()
@@ -49,23 +50,29 @@ def draw(ball_bottom_x, ball_bottom_y):
     pygame.draw.circle(screen, RED, ball_center, BALL_RADIUS)
 
 start_time = time.time()
+logger = PhysicsLogger()
 
 # Game loop
 running = True
+falltime = 0
 while running:
     # Handle events
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
-    
     # Delta time
     delta_time = clock.tick(60) / 1000.0  # Seconds per frame
     
     # Update physics while ball has velocity or is above ground
     if ball_bottom_y < GROUND_Y or (vx != 0 or vy != 0):
+        if falltime == 0:
+            falltime = time.time() - start_time
+        else:
+            pass
         # Update velocities (gravity affects vertical velocity)
-        vy += config.Gravity * delta_time  # Gravity is negative, so this decreases vy
-        
+        # vy -= ((0.5)*config.Gravity) * (delta_time**2)  # Gravity is negative, so this decreases vy
+        # v = u + at, where a is gravity and u is initial velocity
+        vy += config.Gravity * delta_time
         # Update positions
         ball_bottom_x += vx * delta_time * PIXELS_PER_METER
         ball_bottom_y -= vy * delta_time * PIXELS_PER_METER  # Subtract because pygame y increases downward
@@ -79,10 +86,12 @@ while running:
     
     # Draw everything
     draw(ball_bottom_x, ball_bottom_y)
+    logger.log_data(time.time(), ball_bottom_x//PIXELS_PER_METER, -1*(ball_bottom_y//PIXELS_PER_METER), vx, vy)
     
     # Flip display
     pygame.display.flip()
 
 # Cleanup
+logger.save_final()
 pygame.quit()
 sys.exit()

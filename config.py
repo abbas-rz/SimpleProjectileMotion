@@ -8,3 +8,7 @@ import math
 
 initialVelocityX = math.cos(math.radians(Theta)) * Velocity
 initialVelocityY = math.sin(math.radians(Theta)) * Velocity
+
+print(f"Initial Velocity X: {initialVelocityX:.2f} m/s")
+print(f"Initial Velocity Y: {initialVelocityY:.2f} m/s")
+
